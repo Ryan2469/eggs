@@ -1,0 +1,273 @@
+/*탭바 관련 CSS 관혁*/
+.container_allday{
+    width: 600px;
+    margin: 0 auto;
+}
+
+.tab_flex {
+    
+    display: flex;
+    justify-content: center;
+}
+
+.head_link {
+    color: #efb250;
+}
+
+ul.tabs li{
+    background: none;
+    display: inline-block;
+    margin: 10px 50px;
+    cursor: pointer;
+}
+
+ul.tabs li.current{
+    color: #82c67d;
+    border-bottom: 3px solid #82c67d;
+}
+
+.tab-content{
+    display: none;
+}
+
+#tab-1 {
+    width:100%
+}
+#tab-2 {
+    width:100%
+}
+
+.tab-content.current{
+    display: inherit;
+}
+
+/*고객문의 내용*/
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_body {
+    display: flex;
+    justify-content: center;
+}
+
+.com {
+    width: 550px;
+    display: flex;
+    justify-content: center;
+}
+
+#alive {
+    width: 460px;
+    border-bottom: 1px solid #9bce98;
+}
+#alive input:focus-visible{
+    outline: 0;
+}
+
+#allivv input {
+    width: 500px;
+    height: 150px;
+    border:1px solid #9bce98;
+}
+
+#allivv input:focus-visible{
+    outline: 0;
+}
+
+#textbox{ 
+    resize: none;
+    outline: none;
+}
+
+#send {
+    display:flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.button_click {
+    padding: 5px 20px;
+    background-color: #efb250;
+    color: white;
+}
+
+
+
+
+
+
+/* store  */
+.packet {
+    background-image: url('/egg/img/main_4.png');
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.egg10_img1 {
+    position: absolute;
+    top: 390px;
+    left: 235px;
+}
+
+.eggmeli1_1 {
+    position: absolute;
+    top: 640px;
+    left: 225px;
+    font-size: 15px;
+    color: #efb250
+}
+
+.eggmeli1_2 {
+    position: absolute;
+    top: 640px;
+    left: 277px;
+    font-size: 15px;
+    color: #82c67d;
+}
+
+.egg10_img2 {
+    position: absolute;
+    top: 390px;
+    left: 695px;
+}
+
+.eggmeli2_1 {
+    position: absolute;
+    top: 640px;
+    left: 685px;
+    font-size: 15px;
+    color: #efb250
+}
+
+.eggmeli2_2 {
+    position: absolute;
+    top: 640px;
+    left: 737px;
+    font-size: 15px;
+    color: #82c67d;
+}
+
+.egg10_img3 {
+    position: absolute;
+    top: 390px;
+    left: 1150px;
+}
+
+.eggmeli3_1 {
+    position: absolute;
+    top: 640px;
+    left: 1145px;
+    font-size: 15px;
+    color: #efb250
+}
+
+.eggmeli3_2 {
+    position: absolute;
+    top: 640px;
+    left: 1198px;
+    font-size: 15px;
+    color: #82c67d;
+}
+
+.egg10_img4 {
+    position: absolute;
+    top: 390px;
+    left: 1610px;
+}
+
+.eggmeli4_1 {
+    position: absolute;
+    top: 640px;
+    left: 1600px;
+    font-size: 15px;
+    color: #efb250
+}
+
+.eggmeli4_2 {
+    position: absolute;
+    top: 640px;
+    left: 1653px;
+    font-size: 15px;
+    color: #82c67d;
+}
+
+
+/* Representative Menu */
+
+.pic {
+    display:flex;
+    justify-content: center;
+    background-image: url('/egg/img/main_3.png');
+    width: 100%;  
+    height: 100vh;
+}
+
+.pic_a {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:1910px;
+    
+}
+
+.egg_porm1 {
+    position:absolute;
+    left: 100px;
+    top:480px;
+}
+.egg_porm1:hover .egg_img1 {
+
+    transform: translateY(-40%);
+    transition: 1s all;
+}
+.egg_font1 {
+    height: 100%;
+    display: none
+}
+.egg_font1 p {
+    color: #82c67d;
+    font-weight: bold;
+}
+
+.egg_porm2 {
+    position:absolute;
+    left: 730px;
+    top: 380px;
+}
+.egg_porm2:hover .egg_img2 {
+
+    transform: translateY(-40%);
+    transition: 1s all;
+}
+.egg_font2 {
+    height: 100%;
+    display: none
+}
+.egg_font2 p {
+    color: #82c67d;
+    font-weight: bold;
+}
+
+.egg_porm3 {
+    position:absolute;
+    left:1450px;
+    top: 380px;
+}
+.egg_porm3:hover .egg_img3 {
+
+    transform: translateY(-40%);
+    transition: 1s all;
+}
+.egg_font3 {
+    height: 100%;
+    display: none
+}
+.egg_font3 p {
+    color: #82c67d;
+    font-weight: bold;
+}

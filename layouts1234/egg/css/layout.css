@@ -1,0 +1,113 @@
+* { margin: 0; padding: 0; border: 0; 
+    box-sizing: border-box;
+    }
+    
+    @font-face {
+        font-family: 'S-CoreDream-3Light';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') 
+        format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    body {
+        font-family: 'S-CoreDream-3Light';
+    }
+    
+/* 탭바 관련 CSS */
+    .container_allday{
+        width: 600px;
+        margin: 0 auto;
+    }
+    
+    .tab_flex {
+        
+        display: flex;
+        justify-content: center;
+    }
+    
+    .head_link {
+        color: #efb250;
+    }
+    
+    ul.tabs li{
+        background: none;
+        display: inline-block;
+        margin: 10px 50px;
+        cursor: pointer;
+    }
+    
+    ul.tabs li.current{
+        color: #82c67d;
+        border-bottom: 3px solid #82c67d;
+    }
+    
+    .tab-content{
+        display: none;
+    }
+    
+    #tab-1 {
+        width:100%
+    }
+    #tab-2 {
+        width:100%
+    }
+    
+    .tab-content.current{
+        display: inherit;
+    }
+    
+    /*고객문의 내용*/
+    #content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .content_body {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .com {
+        width: 550px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #alive {
+        width: 460px;
+        border-bottom: 1px solid #9bce98;
+    }
+    #alive input:focus-visible{
+        outline: 0;
+    }
+    
+    #allivv input {
+        width: 500px;
+        height: 150px;
+        border:1px solid #9bce98;
+    }
+    
+    #allivv input:focus-visible{
+        outline: 0;
+    }
+    
+    #textbox{ 
+        resize: none;
+        outline: none;
+    }
+    
+    #send {
+        display:flex;
+        justify-content: center;
+        margin-top: 3em;
+    }
+    
+    .button_click {
+        padding: 5px 20px;
+        background-color: #efb250;
+        color: white;
+    }
+    

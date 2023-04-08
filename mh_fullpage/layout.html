@@ -1,0 +1,201 @@
+{Context::addHtmlHeader('<meta name="viewport" content="width=device-width, user-scalable=yes">')}
+{@ $li = $layout_info; }
+
+<load target="css/fullpage.css" />
+<load target="js/fullpage.min.js" />
+<load target="js/layout.js" />
+<load cond="$li->scroll_user == 'true'" target="js/scrolloverflow.min.js" />
+
+<block cond="$li->add_header">{$li->add_header}</block>
+<block cond="!$li->scroll_user_gap">{@ $li->scroll_user_gap = '150'}</block>
+<block cond="!$li->tbg_color">{@ $li->tbg_color = '#000'}</block>
+<block cond="!$li->bbg_color">{@ $li->bbg_color = '#000'}</block>
+<block cond="!$li->section0_color">{@ $li->section0_color = '#5b927d'}</block>
+<block cond="!$li->section1_color">{@ $li->section1_color = '#f3b96c'}</block>
+<block cond="!$li->section2_color">{@ $li->section2_color = '#9C4998'}</block>
+<block cond="!$li->title_size">{@ $li->title_size = '5em'}</block>
+<block cond="!$li->title_color">{@ $li->title_color = '#fff'}</block>
+<block cond="!$li->subtitle_size">{@ $li->subtitle_size = '1em'}</block>
+<block cond="!$li->subtitle_color">{@ $li->subtitle_color = '#fff'}</block>
+<block cond="!$li->content_width">{@ $li->content_width = '100%'}</block>
+<block cond="!$li->content_color">{@ $li->content_color = 'transparent'}</block>
+<block cond="!$li->html0_width">{@ $li->html0_width = '100%'}</block>
+<block cond="!$li->html0_color">{@ $li->html0_color = 'transparent'}</block>
+<block cond="!$li->html1_1_width">{@ $li->html1_1_width = '100%'}</block>
+<block cond="!$li->html1_1_color">{@ $li->html1_1_color = 'transparent'}</block>
+<block cond="!$li->html1_2_width">{@ $li->html1_2_width = '100%'}</block>
+<block cond="!$li->html1_2_color">{@ $li->html1_2_color = 'transparent'}</block>
+<block cond="!$li->html2_width">{@ $li->html2_width = '100%'}</block>
+<block cond="!$li->html2_color">{@ $li->html2_color = 'transparent'}</block>
+<block cond="!$li->one_title">{@ $li->one_title = '1st'}</block>
+<block cond="!$li->two_title">{@ $li->two_title = '2nd'}</block>
+<block cond="!$li->three_title">{@ $li->three_title = '3rd'}</block>
+
+<style>
+.section { <!--@if($li->area_location == 'false')-->padding-top:70px;<!--@end-->}
+.f_title { font-size:{$li->title_size}; color:{$li->title_color}; margin:0; padding:0; }
+.intro { <!--@if($li->scroll_user == 'true')-->padding:{$li->scroll_user_gap}px 0<!--@end-->; }
+.f_subtitle { font-size:{$li->subtitle_size}; color:{$li->subtitle_color}; }
+.content_area { width:{$li->content_width}; padding:0 80px; background-color:{$li->content_color}; <!--@if($li->content_radius == '')-->-webkit-border-radius:10px;-moz-border-radius:10px; border-radius:10px;<!--@end--> <block cond="$li->content_shadow == 'Y'">box-shadow:0 0 5px #330000; </block>; }
+
+#html_area0 { width:{$li->html0_width}; background-color:{$li->html0_color}; text-align:left; <!--@if($li->html0_radius == '')-->-webkit-border-radius:10px;-moz-border-radius:10px; border-radius:10px;<!--@end--> <block cond="$li->html0_shadow == 'Y'">box-shadow:0 0 5px #330000; </block> }
+#html_area1_1 { width:{$li->html1_1_width}; background-color:{$li->html1_1_color}; text-align:left; <!--@if($li->html1_1_radius == '')-->-webkit-border-radius:10px;-moz-border-radius:10px; border-radius:10px;<!--@end--> <block cond="$li->html1_1_shadow == 'Y'">box-shadow:0 0 5px #330000; </block> }
+#html_area1_2 { width:{$li->html1_2_width}; background-color:{$li->html1_2_color}; text-align:left; <!--@if($li->html1_2_radius == '')-->-webkit-border-radius:10px;-moz-border-radius:10px; border-radius:10px;<!--@end--> <block cond="$li->html1_2_shadow == 'Y'">box-shadow:0 0 5px #330000; </block> }
+#html_area2 { width:{$li->html2_width}; background-color:{$li->html2_color}; text-align:left; <!--@if($li->html2_radius == '')-->-webkit-border-radius:10px;-moz-border-radius:10px; border-radius:10px;<!--@end--> <block cond="$li->html2_shadow == 'Y'">box-shadow:0 0 5px #330000; </block> }
+
+#fp-nav ul li .fp-tooltip { color:{$li->subtitle_color}; }
+
+@media all and (max-width:479px) {
+.section { padding-top:0px; }
+.f_title { font-size:3em; }
+.content_area { margin:10px auto; padding:0px; width:100%; }
+#html_area0, #html_area1_1, #html_area1_2, #html_area2 { width:95% }
+.intro { <!--@if($li->scroll_user == 'true')-->padding:50px 0<!--@end-->; }
+}
+</style>
+
+<style cond="$li->header_show == 'Y' || $li->footer_show == 'Y'">
+#header { background:url({$li->bg_img}) {$li->layout_bgimg_align} {$li->layout_bgimg_repeat} {$li->tbg_color}; background-position:50% {$li->layout_bgimg_top}%;}
+#footer { background:{$li->bbg_color}; }
+</style>
+
+<style cond="$li->fullpage_select == 'bgimg'">
+#section0{ <!--@if($li->bgimg_slide == 'Y')--><!--@else-->background-image:url({$li->section0_image}); background-color:{$li->section0_color};<!--@end--> }
+#section2{ background-image:url({$li->section2_image}); background-color:{$li->section2_color}; }
+#slide1{ background-image:url({$li->section1_1_image}); background-color:{$li->section1_color}; }
+#slide2{ background-image:url({$li->section1_2_image}); background-color:{$li->section1_color}; }
+</style>
+
+<!--[if IE]>
+	<script type="text/javascript">
+		 var console = { log:function() {} };
+	</script>
+<![endif]-->
+
+<ul id="menu" cond="$li->menu_user == 'Y'">
+	<li data-menuanchor="{$li->one_title}"><a href="#{$li->one_title}">{$li->one_title}</a></li>
+	<li data-menuanchor="{$li->two_title}"><a href="#{$li->two_title}">{$li->two_title}</a></li>
+	<li data-menuanchor="{$li->three_title}"><a href="#{$li->three_title}">{$li->three_title}</a></li>
+</ul>
+
+<block cond="$li->header_show == 'Y'"><include target="header.html" /></block>
+<block cond="$li->footer_show == 'Y'"><include target="footer.html" /></block>
+
+<div id="fullpage">
+	<block cond="$li->smart_menu == 'Y'"><include target="smenu.html" /></block>
+
+	<div class="section" id="section0" cond="$li->use_section0 == 'Y'">
+		<block cond="$li->bgimg_slide == 'Y'"><include target="bgslide.html" /></block>
+		<div class="intro" style="margin-top:{$li->intro0_top}">
+			<h1 class="f_title">{$li->section0_title}</h1>
+			<p class="f_subtitle">{$li->section0_subtitle}</p>
+			<table cond="$li->content0_show == 'Y'" class="content_area"><tr><td>
+			<block cond="$li->menu_p == ''"><include target="position.html" /></block>
+				{$content|noescape}
+			</td></tr></table>
+			<table cond="$li->section0_html" class="html_area" id="html_area0"><tr><td>
+				{$li->section0_html}
+			</td></tr></table>
+		</div>
+	</div>
+
+	<div class="section" id="section1" cond="$li->use_section1 == 'Y'">
+		<div class="slide" id="slide1">
+			<div class="intro" style="margin-top:{$li->intro1_1_top}">
+				<h1 class="f_title">{$li->section1_1_title}</h1>
+				<p class="f_subtitle">{$li->section1_1_subtitle}</p>
+				<table cond="$li->content1_show == 'Y'" class="content_area"><tr><td >
+				<block cond="$li->menu_p == ''"><include target="position.html" /></block>
+					{$content|noescape}
+				</td></tr></table>
+				<table cond="$li->section1_1_html" class="html_area" id="html_area1_1"><tr><td>
+					<block cond="!Mobile::isMobileCheckByAgent()">{$li->section1_1_html}</block>
+					<block cond="Mobile::isMobileCheckByAgent()">
+						<!--@if($li->section1_1s_html)-->
+							{$li->section1_1s_html}
+						<!--@else-->
+							{$li->section1_1_html}
+						<!--@end-->
+					</block>
+				</td></tr></table>
+			</div>
+		</div>
+
+		<div class="slide" id="slide2" cond="$li->section1_2_html || $li->section1_2_title || $li->section1_2_subtitle">
+			<div class="intro" style="margin-top:{$li->intro1_2_top}">
+				<h1 class="f_title">{$li->section1_2_title}</h1>
+				<p class="f_subtitle">{$li->section1_2_subtitle}</p>
+				<table cond="$li->section1_2_html" class="html_area" id="html_area1_
+				2"><tr><td align="center">
+					{$li->section1_2_html}
+				</td></tr></table>
+			</div>
+		</div>
+	</div>
+
+	<div class="section" id="section2" cond="$li->use_section2 == 'Y'">
+		<div class="intro" style="margin-top:{$li->intro2_top}">
+			<h1 class="f_title">{$li->section2_title}</h1>
+			<p class="f_subtitle">{$li->section2_subtitle}</p>
+			<table cond="$li->content2_show == 'Y'" class="content_area"><tr><td>
+			<block cond="$li->menu_p == ''"><include target="position.html" /></block>
+				{$content|noescape}
+			</td></tr></table>
+			<table cond="$li->section2_html" class="html_area" id="html_area2"><tr><td>
+				{$li->section2_html}
+			</td></tr></table>
+		</div>
+	</div>
+
+</div>
+
+<div id="actions" cond="$li->control_arrows_user == 'true'">
+	<a id="moveSectionUp" href="#"></a>
+	<a id="moveSectionDown" href="#"></a>
+</div>
+
+<script>
+jQuery(function ($) { 
+	$(document).ready(function(){
+
+	$('#fullpage').fullpage({
+	<block cond="$li->fullpage_select == 'bgcolor'">
+		sectionsColor:['{$li->section0_color}', '{$li->section1_color}', '{$li->section2_color}'],
+	</block>
+	<block cond="$li->menu_user == 'Y'">
+		menu:'#menu',
+		anchors:['{$li->one_title}', '{$li->two_title}', '{$li->three_title}'],
+	</block>
+		verticalCentered:{$li->area_location},
+		css3:false,
+		navigation:{$li->navigation_user},
+		slidesNavigation:{$li->navi_down_user},
+		scrollOverflow:{$li->scroll_user},
+		controlArrows:{$li->control_arrows_user},
+		continuousVertical:{$li->loop_user},
+	<block cond="$li->tooltips_user == 'true'">
+		navigationTooltips: ['{$li->one_title}', '{$li->two_title}', '{$li->three_title}'],
+		showActiveTooltip: {$li->tooltips_user},
+	</block>
+		scrollBar: {$li->scrollbar_user},
+		licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+	<block cond="$li->smart_fullpage == 'N'">
+		responsiveWidth: 260,
+		afterResponsive: function(isResponsive){
+		}
+	</block>
+	});
+
+	<block cond="$li->control_arrows_user == 'true'">
+		$('#moveSectionUp').click(function(e){
+			e.preventDefault();
+			$.fn.fullpage.moveSectionUp();
+		});
+		$('#moveSectionDown').click(function(e){
+			e.preventDefault();
+			$.fn.fullpage.moveSectionDown();
+		});
+	</block>
+	});
+});
+</script>

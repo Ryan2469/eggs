@@ -1,0 +1,15 @@
+<div id="footer">
+<block cond="!$li->copyright_b_color">{@ $li->copyright_b_color = '#555'}</block>
+<block cond="!$li->copyright_t_color">{@ $li->copyright_t_color = '#fff'}</block>
+
+	<div class="copyright" style="color:{$li->copyright_t_color}">
+		{$li->footer_copyright}
+		<a cond="$li->mail" href="mailto:{$li->mail}" style="color:{$li->copyright_t_color}"> l <i class="fa fa-envelope"></i> Send E-mail l </a><a href="http://moonhouse.co.kr/" onclick="window.open(this.href);return false;" style="color:{$li->copyright_t_color}"><i class="fab fa-connectdevelop fa-pulse"></i> Edited by MoonHouse.</a>
+		<a cond="$li->copy_etc1 || $li->copy_etc2">
+		<br/>
+		<span cond="$li->copy_etc1">{$li->copy_etc1}</span><br/>
+		<i cond="$li->copy_etc2">{$li->copy_etc2}</i>
+		</a>
+	</div>
+
+</div>

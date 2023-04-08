@@ -1,0 +1,116 @@
+<!-- 배경슬라이드 CSS / JS -->
+<load target="css/supersized.css" />
+<load target="css/supersized.shutter.css" />
+<load target="js/supersized.3.2.7.min.js" />
+<load target="js/supersized.shutter.min.js" />
+
+<block cond="!$li->slide_interval">{@ $li->slide_interval = '5000'}</block>
+<block cond="!$li->transition_speed">{@ $li->transition_speed = '2000'}</block>
+
+<!-- 이미지 슬라이드의 이미지 경로 설정 -->
+<block loop="$i=0;$i<4;$i++">{@ $imgsrc[$i] = $li->path.'img/bt01.jpg'}</block>
+<block cond="$li->slider1_image">{@ $imgsrc[0] = $li->slider1_image}</block>
+<block cond="$li->slider2_image">{@ $imgsrc[1] = $li->slider2_image}</block>
+<block cond="$li->slider3_image">{@ $imgsrc[2] = $li->slider3_image}</block>
+<block cond="$li->slider4_image">{@ $imgsrc[3] = $li->slider4_image}</block>
+
+<script type="text/javascript">
+	jQuery(function($){
+		$('#fullpage').addClass('');
+
+		// supersized background script option start
+		$.supersized({
+			// Functionality
+			slide_interval : {$li->slide_interval}, // Length between transitions
+			transition : {$li->slide_transition}, // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+			transition_speed : {$li->transition_speed}, // Speed of transition
+			// Components
+			slide_links : 'blank', // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+			slides :[ // Slideshow Images
+						{image : '{$imgsrc[0]}', title : '<p class="lst_txt">{$li->slider1_description_en}</p><p class="lst_txt2">{$li->slider1_description_kr}</p>', },
+						{image : '{$imgsrc[1]}', title : '<p class="lst_txt">{$li->slider2_description_en}</p><p class="lst_txt2">{$li->slider2_description_kr}</p>', },
+						{image : '{$imgsrc[2]}', title : '<p class="lst_txt">{$li->slider3_description_en}</p><p class="lst_txt2">{$li->slider3_description_kr}</p>', },
+						{image : '{$imgsrc[3]}', title : '<p class="lst_txt">{$li->slider4_description_en}</p><p class="lst_txt2">{$li->slider4_description_kr}</p>', }
+						]
+			});
+		});
+		// supersized background script option end
+</script>
+
+<block cond="!$li->s_img_loc">{@ $li->s_img_loc = 'fixed'}</block>
+<block cond="!$li->s_img_top">{@ $li->s_img_top = '0'}</block>
+<block cond="!$li->s_img_left">{@ $li->s_img_left = '0'}</block>
+<block cond="!$li->s_img_b">{@ $li->s_img_b = '#fff'}</block>
+<style type="text/css">
+#supersized,
+#supersized li { position:{$li->s_img_loc}; top:{$li->s_img_top}px; left:{$li->s_img_left}px}
+#supersized li { background:{$li->s_img_b} }
+#slidecaption { bottom:8%; width:100%; text-align:center; }
+
+@media all and (max-width: 479px) {
+.footer .f_cr_area { <!--@if($li->bgimg_slide == 'Y')-->margin-bottom:-15px<!--@else--><!--@end--> }
+#slidecaption { bottom:5%; width:94%; text-align:center; line-height:20px;}
+#slidecaption .lst_txt,
+#slidecaption .lst_txt2{ font-size:15px }
+</style>
+
+<!-- slide_content_normal -->
+	<block cond="$li->slide_content == '1'">
+	<!--Thumbnail Navigation-->
+	<div id="prevthumb"></div>
+	<div id="nextthumb"></div>
+	<!--Arrow Navigation-->
+	<a id="prevslide" class="load-item"></a>
+	<a id="nextslide" class="load-item"></a>
+	<div id="thumb-tray" class="load-item">
+		<div id="thumb-back"></div>
+		<div id="thumb-forward"></div>
+	</div>
+
+	<div class="slide_wrap">
+	<div cond="$li->slider1_description_en || $li->slider1_description_kr" id="slidecaption"></div>
+	</div>
+	</block>
+<!-- //slide_content_normal -->
+
+<!-- //slide_content_thumb -->
+	<block cond="$li->slide_content == '2'">
+	<!--Thumbnail Navigation-->
+	<div id="prevthumb"></div>
+	<div id="nextthumb"></div>
+	<!--Arrow Navigation-->
+	<a id="prevslide" class="load-item"></a>
+	<a id="nextslide" class="load-item"></a>
+	<div id="thumb-tray" class="load-item">
+		<div id="thumb-back"></div>
+		<div id="thumb-forward"></div>
+	</div>
+	<!--Time Bar-->
+	<div id="progress-back" class="load-item">
+		<div id="progress-bar"></div>
+	</div>
+	<!--Caption-->
+
+	<!--Control Bar-->
+	<div class="slide_wrap">
+	<div cond="$li->slider1_description_en || $li->slider1_description_kr" id="slidecaption"></div>
+		<div class="slide_content">
+			<div id="controls-wrapper" class="load-item">
+				<div id="controls">
+					<a id="play-button"><img id="pauseplay" src="img/pause.png"/></a>
+					<!--Slide counter-->
+					<div id="slidecounter">
+						<span class="slidenumber"></span> / <span class="totalslides"></span>
+					</div>
+					<!--Slide captions displayed here-->
+					
+					<!--Thumb Tray button-->
+					<a id="tray-button"><img id="tray-arrow" src="img/button-tray-up.png"/></a>
+					<!--Navigation-->
+					<ul id="slide-list"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</block>
+<!-- //slide_content_thumb -->

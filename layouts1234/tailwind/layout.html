@@ -1,0 +1,189 @@
+<load target="assets/css/NotoSansKR.css" />
+<load target="assets/css/tailwind.css" />
+<load target="assets/js/all.min.js" />
+<load target="assets/js/component.js" />
+<load target="assets/css/custom.css" />
+<div id="wrap" class="pt-0 relative">
+    <div id="wrap-container" class="relative">
+		<header class="sticky w-full top-0 py-2 bg-white border-b border-gray-200 delay-75 duration-300 z-10">
+            <div class="max-w-screen-xl mx-auto px-3">
+                <div class="flex flex-wrap justify-between">
+                    <div class="col-span-1 xl:col-span-5 flex">
+                        <div class="flex  lg:hidden items-center justify-center mr-3">
+							<div class="sideNavBtn flex items-center justify-center w-10 h-10 px-3 text-base" >
+                                <i class="fas fa-bars"></i>
+							</div>
+                            <span class="ml-1">임관혁</span>
+						</div>
+                        <a href="/" class="flex items-center text-xl text-black">
+							
+						</a>
+						
+						<a href="{$layout_info->home_href}" class="hidden h-10 lg:flex px-2 items-center text-lg font-semibold text-black">
+							<img src="/img/xeant2.svg" alt="" style="width:40px;padding-right:5px;"> 임관혁
+						</a>
+                        <div class="col-span-1 pl-0 lg:pl-3 hidden lg:flex justify-center">
+							<ul class="gnb list-none hidden lg:flex items-center">
+                                <li loop="$gnb->list=>$key1,$val1" class="active"|cond="$val1['selected']">
+                                    <a href="{$val1['href']}" class="uppercase text-sm hover:text-blue-500 font-medium leading-8 px-3 mx-1 <!--@if($val1['selected'])--> text-blue-500 <!--@else--> text-gray-600 <!--@end-->" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="account col-span-1 flex items-center list-none justify-end">
+                        <li class="dropdown flex items-center relative inline-block text-left">
+                            <!-- <a href="javascript:void(0)" class="block dropdown-btn mx-2 md:mx-4" data-placement="bottom" data-toggle="popover" data-html="true" data-popover-content="#account-dropdown">
+                                
+                            </a> -->
+                            <!--@if($logged_info)-->
+                            <a href="{getUrl('','act','dispMemberInfo')}" class="inline-block">
+                                <span class="flex items-center justify-center text-gray-900 w-8 h-8 rounded-full bg-gray-200">
+                                    <i class="far fa-user"></i>
+
+                                </span>
+                            </a>
+                            <a href="{getUrl('','act','dispMemberLogout')}" class="mx-2 md:mx-4 text-black rounded-full text-sm hover:text-blue-500">
+                                로그아웃
+                            </a>
+                            <!--@else-->
+                            <a href="{getUrl('','act','dispMemberLoginForm')}" class="login-btn dropdown-btn mx-2 text-white bg-blue-600 hover:bg-blue-700 rounded-full px-5 py-1 text-sm " data-placement="bottom" data-toggle="popover" data-html="true" data-dropdown-content="#account-dropdown">
+								로그인
+							</a>
+                            <a href="{getUrl('', 'act','dispMemberSignUpForm')}" class="mx-2 md:mx-4 text-black rounded-full text-sm hover:text-blue-500" >
+								회원가입
+							</a>
+                            <!--@end-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="content relative">
+            
+            <div class="w-full" cond="$layout_info->layout_type=='main_page'">
+                {$content}
+            </div>
+            <div class="w-full" cond="$layout_info->layout_type=='sub_box'">
+                <div class="max-w-screen-xl px-3 mx-auto">
+                    {$content}
+                </div>
+            </div>
+            <div class="w-full" cond="$layout_info->layout_type=='sub_page'">
+                
+					{$content}
+				
+            </div>
+        </main>
+        <div class="pt-12 pb-8 border-t border-gray-100 bg-coolGray-100 hidden">
+            <div class="max-w-screen-xl mx-auto px-3 grid grid-cols-6 gap-6">
+                <div class="col-span-6 md:col-span-2 pr-8">
+                    <div class="flex py-3">
+                        <div class="flex items-center text-2xl mr-3"><i class="fab fa-apple"></i></div>
+                        <div class="flex items-center text-lg">APPLE</div>
+                    </div>
+                    <div class="text-coolGray-400 text-sm mb-3">
+                        <!-- 지제이웍스는 2018 년 처음시작한 웹과 앱을 개발하기 위한 소규모 개발팀입니다. 
+우리는 혁신적이고 미래 지향적 인 기업, 신생 기업 및 비즈니스와 협력하여 매력적인 제품을 연구하고 개발합니다. -->
+                    </div>
+                    <div class="text-sm pt-5">
+                        <ul class="list-none flex justify-center md:justify-start">
+							<li><a href="https://medium.com/@gjworks" class="text-gray-600 hover:text-blue-500 text-xl leading-6 px-3" target="_blank"><i class="fab fa-medium"></i></a></li>
+							<li><a class="text-gray-600 hover:text-blue-500 text-xl leading-6 px-3" href="https://www.facebook.com/GjworksDev" target="_blank"><i class="fab fa-facebook"></i></a></li>
+							<li><a class="text-gray-600 hover:text-blue-500 text-xl leading-6 px-3" href="https://twitter.com/Gjworks2" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a class="text-gray-600 hover:text-blue-500 text-xl leading-6 px-3" href="#"><i class="fab fa-youtube"></i></a></li>
+						</ul>
+                    </div>
+                </div>
+                <div class="hidden md:block col-span-4">
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="col-span-1">
+                            <div class="py-3 font-semibold text-base">ABOUT</div>
+                            <a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">대표 인사말</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">연혁</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">회사의 비전</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">오시는 길</a>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="py-3 font-semibold text-base">PRODUCT</div>
+                            <a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">SendCore</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">PayCore</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">E-book Module</a>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="py-3 font-semibold text-base">COMMUNITY</div>
+                            <a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">기술지원</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">자주묻는 질문</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">공지사항</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">문의하기</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">블로그</a>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="py-3 font-semibold text-base">고객센터</div>
+                            <a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">Terms of service</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">Privacy policy</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">카카오톡 채널</a><a href="#" class="w-full text-sm text-gray-500 hover:text-blue-500 block py-2">도움말과 지원</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <footer class="pb-5 border-t border-gray-100 bg-coolGray-100">
+            <div class="max-w-screen-xl mx-auto px-3">
+                <div class="flex flex-wrap grid grid-cols-1 pt-5 md:pt-0">
+					<div class="pt-8 pb-10 text-sm text-gray-500">
+                        <div class="mb-1 flex flex-wrap">
+                            <span class="mr-4 p-1">임관혁</span>
+                            <span class="mr-4 p-1">카카오톡 아이디: amh9981</span>
+                            <!-- <span class="mr-4 p-1">이메일: amg9981@naver.com</span>
+                            <span class="mr-4 p-1"><a href="https://open.kakao.com/o/sSaQlQic">채팅: 카카오톡 채널 (아이디 proant777) </a> 
+                            </span>
+                            <span class="mr-4 p-1">주소 :  충청남도 천안시 서북구 직산읍 군수1길 78-23</span>
+                            <span class="mr-4 p-1">팩스: 0508-918-0926</span>
+                            <span class="mr-4 p-1">이메일 : proant777@naver.com </span> -->
+                          </div>
+                          
+                        <div class="mt-5">
+                            <h1>SITE MAP</h1>
+                            <div class="flex justify-start under_line top_line">
+                                <ul class="gnb list-none flex flex-wrap items-center">
+                                    <li loop="$main_menu->list=>$key1,$val1" class="active"|cond="$val1['selected']">
+                                        <a href="{$val1['href']}" class="uppercase text-sm hover:text-blue-500 font-medium leading-8 px-3 mx-1 <!--@if($val1['selected'])--> text-blue-500 <!--@else--> text-gray-600 <!--@end-->" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            <div class="flex justify-start under_line">
+                                <ul class="gnb list-none flex flex-wrap items-center">
+                                    <li loop="$blog_menu->list=>$key1,$val1" class="active"|cond="$val1['selected']">
+                                        <a href="{$val1['href']}" class="uppercase text-sm hover:text-blue-500 font-medium leading-8 px-3 mx-1 <!--@if($val1['selected'])--> text-blue-500 <!--@else--> text-gray-600 <!--@end-->" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="flex justify-start under_line">
+                                <ul class="gnb list-none flex flex-wrap items-center">
+                                    <li loop="$function_menu->list=>$key1,$val1" class="active"|cond="$val1['selected']">
+                                        <a href="{$val1['href']}" class="uppercase text-sm hover:text-blue-500 font-medium leading-8 px-3 mx-1 <!--@if($val1['selected'])--> text-blue-500 <!--@else--> text-gray-600 <!--@end-->" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="flex justify-start under_line">
+                                <ul class="gnb list-none flex flex-wrap items-center">
+                                    <li loop="$demo_menu->list=>$key1,$val1" class="active"|cond="$val1['selected']">
+                                        <a href="{$val1['href']}" class="uppercase text-sm hover:text-blue-500 font-medium leading-8 px-3 mx-1 <!--@if($val1['selected'])--> text-blue-500 <!--@else--> text-gray-600 <!--@end-->" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="flex justify-start under_line">
+                                <ul class="gnb list-none flex  flex-wrap items-center">
+                                    <li loop="$design_menu->list=>$key1,$val1" class="active"|cond="$val1['selected']">
+                                        <a href="{$val1['href']}" class="uppercase text-sm hover:text-blue-500 font-medium leading-8 px-3 mx-1 <!--@if($val1['selected'])--> text-blue-500 <!--@else--> text-gray-600 <!--@end-->" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+						
+					</div>
+                </div>
+                <div class="text-sm text-gray-500">©2021년 <b>임관혁</b> 포트폴리오 </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<include target="include/m_nav.html" />

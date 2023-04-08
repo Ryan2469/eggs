@@ -1,0 +1,41 @@
+<load cond="$layout_info->mp_bg_color=='black'" target="css/mp_black.css" />
+<load cond="$layout_info->mp_bg_color=='black1'" target="css/mp_black1.css" />
+<load cond="$layout_info->mp_bg_color=='white'" target="css/mp_white.css" />
+<load cond="$layout_info->mp_bg_color=='white1'" target="css/mp_white1.css" />
+<load cond="$layout_info->mp_bg_color=='gray'" target="css/mp_gray.css" />
+
+<div class="Menu_Position <!--@if($layout_info->mp_bg_color=='white')--> flat<!--@end-->" style="<!--@if($layout_info->content_radius == '')-->-webkit-border-radius:5px;-moz-border-radius:5px; border-radius:5px;<!--@end-->">
+	<ul>
+		<li class="home"><a href="{getUrl('')}" class="active"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
+		<!--@foreach($GNB->list as $key => $val)--><!--@if($val['link'])-->
+		<!--@if($val['selected'])-->
+			<li><a href="{$val['href']}">{$val['text']}</a></li>
+		{@ $menu_1st = $val }
+		<!--@end-->
+		<!--@endif--><!--@endforeach-->
+		<!--@if($menu_1st)-->
+		{@ $idx = 1 }
+			<!--@foreach($menu_1st['list'] as $key => $val)--><!--@if($val['link'])-->
+			<!--@if($val['selected'])-->
+				<li><strong><a href="{$val['href']}">{$val['text']}</a></strong></li>
+				<!--@if($val['list'] && ($val['expand']=='Y'||$val['selected']) )-->
+				<!--@foreach($val['list'] as $k => $v)--><!--@if($v['link'])-->
+				<!--@if($v['selected'])-->
+					<li><strong><a href="{$v['href']}">{$v['text']}</a></strong></li>
+					<!--@if($v['list'] && ($v['expand']=='Y'||$v['selected']) )-->
+					<!--@foreach($v['list'] as $k => $v4)--><!--@if($v4['link'])-->
+					<!--@if($v4['selected'])-->
+						<li><strong><a href="{$v4['href']}">{$v4['text']}</a></strong></li>
+						{@$idx++}
+					<!--@endif-->
+					<!--@endif--><!--@endforeach-->
+					<!--@endif-->
+				<!--@endif-->
+				<!--@endif--><!--@endforeach-->
+				<!--@endif-->
+			<!--@end-->
+			<!--@endif--><!--@endforeach-->
+		<!--@endif-->
+	</ul>
+	<div class="bclear"></div>
+</div>

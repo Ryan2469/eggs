@@ -1,0 +1,55 @@
+
+<!-- <div class="flex flex-wrap flex-col relative p-5">
+    <div class="relative pb-5">
+        <span class="text-xl font-semibold ">공지사항</span>
+        <a href="#" class="absolute right-0 text-gray-600 hidden">전체보기</a>
+    </div> -->
+    <div class="flex flex-wrap flex-col egg_bold_green">
+        <div class="w-full flex bg_egg_green py-5 px-8 text-white S-Core">
+            <div class="w-8/12">
+                제목2
+            </div>
+            <div class="w-2/12">
+                작성일
+            </div>
+            <div class="w-2/12">
+                조회수
+            </div>
+        </div>
+<!--@foreach($widget_info->content_items as $key => $item)-->
+    <!-- <div class="flex w-full justify-between border-b border-gray-200 py-3 text-gray-600 text-base weiget">
+        <div>
+            <a href="{getSiteUrl($item->domain, '', 'mid', $item->get('mid'))}">
+                <span class="bg-blue-500 text-white py-1 px-5 rounded-full text-sm">{$item->getBrowserTitle()}</span>
+            </a>
+            <a href="{$item->getLink()}">
+                {$item->getTitle($widget_info->subject_cut_size)}
+            </a>
+        </div>  
+        <div class="text-sm text-gray-400">
+            {$item->getRegdate("Y-m-d")}
+        </div>
+    </div> -->
+
+    <div class="w-full flex py-3 px-8">
+        <div class="w-8/12 text-left flex items-center">
+           <img src="/egg/img/notice-16.png" alt="">
+           <a href="{$item->getLink()}" class="img_link">
+            {$item->getTitle($widget_info->subject_cut_size)}
+           </a> 
+        </div>
+        <div class="w-2/12 flex items-center justify-center">
+            {$item->getRegdate("Y-m-d")}
+        </div> 
+        <div class="w-2/12 flex items-center justify-center">
+            {$item->variables['readed_count']}
+        </div>
+    </div>
+      
+<!--@end-->
+</div>
+<style>
+    .weiget:last-child{
+        border:none; 
+    }
+</style>

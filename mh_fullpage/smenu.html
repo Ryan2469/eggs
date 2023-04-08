@@ -1,0 +1,98 @@
+<load target="css/smenu.css" />
+<load target="js/bootstrap.min.js" />
+
+<style>
+.hamburger.is-closed:before,
+.hamburger.is-open:before { color:{$li->title_color}; }
+.hamburger.is-closed .hamb-top,
+.hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-bottom,
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-bottom { background-color:{$li->title_color}; }
+</style>
+
+<div id="wrapper">
+	<div class="overlay"></div>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+		<ul class="nav sidebar-nav">
+			<li class="sidebar-brand"><a href="{getUrl('')}"><i class="fa fa-fw fa-home"></i> {$li->logo_text}</a></li>
+
+			<div class="mhMemberL">
+				<div class="mhMemberLinfo">
+					{@
+						$oModuleModel = getModel('module');
+						$config = $oModuleModel->getModuleConfig('member');
+					}
+					<block cond="$config->profile_image == 'Y'">
+						<img src="img/guest.png" alt="guest" cond="!$logged_info->profile_image->src || !$is_logged" />
+						<img src="{$logged_info->profile_image->src}" alt="member_profile" cond="$logged_info->profile_image->src" />
+					</block>
+					<span cond="!$is_logged">Guest</span>
+					<span cond="$is_logged">{$logged_info->nick_name}</span>
+				</div>
+				<ul class="mhMemberLelse" cond="!$is_logged">
+					<li><a id="ly_login_btn" href="{getUrl('act', 'dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+					<li><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+				</ul>
+				<ul class="mhMemberLelse" cond="$is_logged">
+					<li><a href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+					<li cond="$logged_info->is_admin=='Y'"><a href="{getUrl('','module','admin')}">{$lang->cmd_management}</a></li>
+					<li cond="$logged_info->is_admin!='Y'"><a href="{getUrl('act','dispMemberInfo')}">{$lang->cmd_view_member_info}</a></li>
+				</ul>
+			</div>
+
+			<li loop="$Smart->list=>$key1,$val1" class="active"|cond="$val1['selected']" style="padding-top:10px">
+				<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+				<li class="dropdown" cond="$val1['list']">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i><span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<ul cond="$val1['list']">
+							<li loop="$val1['list']=>$key2,$val2" class="active"|cond="$val2['selected']">
+								<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+							</li>
+						</ul>
+					</ul>
+				</li>
+			</li>
+
+		</ul>
+	</nav>
+
+	<div id="page-content-wrapper">
+		<button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span></button>
+	</div>
+
+</div>
+
+<script>
+$(document).ready(function () {
+ var trigger = $('.hamburger'),
+	 overlay = $('.overlay'),
+	 isClosed = false;
+
+	trigger.click(function () {
+	 hamburger_cross();
+	});
+
+	function hamburger_cross() {
+
+	 if (isClosed == true) {
+		overlay.hide();
+		trigger.removeClass('is-open');
+		trigger.addClass('is-closed');
+		isClosed = false;
+	 } else {
+		overlay.show();
+		trigger.removeClass('is-closed');
+		trigger.addClass('is-open');
+		isClosed = true;
+	 }
+ }
+
+ $('[data-toggle="offcanvas"]').click(function () {
+		$('#wrapper').toggleClass('toggled');
+ });
+});
+</script>
